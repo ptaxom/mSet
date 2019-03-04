@@ -19,7 +19,7 @@ LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS})
 ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
 #~~~~~~~~~
 
-add_executable(mSet src/main.cpp src/Renderer)
+add_executable(mSet src/main.cpp src/Renderer/Renderer.h)
 
 TARGET_LINK_LIBRARIES(mSet ${GTK3_LIBRARIES})
 
