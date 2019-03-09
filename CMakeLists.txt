@@ -9,23 +9,21 @@ include(CTest)
 enable_testing()
 
 find_package(CUDA QUIET REQUIRED)
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+
+INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS})
+LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS})
+
+ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
+
 
 file(GLOB_RECURSE SRC src/* )
 
-# list(REMOVE_ITEM SRC src/main.cpp)
-
-# add_library(proj_lib STATIC ${SRC})
-# target_compile_features(proj_lib PUBLIC cxx_std_11)
-# set_target_properties( proj_lib  PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-
-
-
-
 cuda_add_executable(mSet ${SRC})
 
-# set_property(TARGET Proj1 PROPERTY CUDA_SEPARABLE_COMPILATION ON)
+TARGET_LINK_LIBRARIES(mSet ${GTK3_LIBRARIES})
 
-# target_link_libraries(Proj1 PRIVATE proj)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
